@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBMK Reactor Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1>RBMK Reactor Simulation</h1>
+        <div id="stats-container">
+            <div class="stat-box">
+                <span class="stat-label">Neutron Count</span>
+                <span id="neutron-count" class="stat-value">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Estimated Power</span>
+                <span id="power-output" class="stat-value">0 MW</span>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div id="simulation-container">
+                <canvas id="reactor-canvas"></canvas>
+                <div id="legend">
+                     <div class="legend-item"><span class="dot-legend" style="background-color: #4682B4;"></span> Uranium</div>
+                     <div class="legend-item"><span class="dot-legend" style="background-color: #cccccc;"></span> Non-Uranium</div>
+                     <div class="legend-item"><span class="dot-legend" style="background-color: #00ff73;"></span> Xenon</div>
+                     <div class="legend-item"><div class="legend-square" style="background-color: #777;"></div> Graphite Moderator</div>
+                     <div class="legend-item"><div class="legend-square" style="background-color: #cae9ff;"></div> Cool Water</div>
+                     <div class="legend-item"><div class="legend-square" style="background-color: #ff6347;"></div> Hot Water</div>
+                     <div class="legend-item"><div class="legend-square" style="border: 2px solid #FF4500;"></div> Void</div>
+                     <div class="legend-item"><span class="dot-legend" style="background-color: black; border: 1px solid #aaa;"></span> Thermal Neutron</div>
+                     <div class="legend-item"><span class="dot-legend" style="background-color: white; border: 1px solid black;"></span> Fast Neutron</div>
+                </div>
+            </div>
+            <div id="controls-container">
+                <h2>Controls</h2>
+                <div class="control-item">
+                    <label for="fuel-slider">Target Fuel Load: <span id="fuel-slider-value">5</span>%</label>
+                    <input type="range" id="fuel-slider" min="1" max="20" value="5" class="slider">
+                </div>
+                <div class="control-item">
+                    <label for="power-limit">Power Limit (Target Neutrons): <span id="power-limit-value">40</span></label>
+                    <input type="range" id="power-limit" min="10" max="200" value="40" class="slider">
+                </div>
+                <div class="control-item">
+                     <label for="manual-override">
+                        <input type="checkbox" id="manual-override"> Manual Override
+                    </label>
+                    <div id="manual-rod-control-container" class="hidden">
+                        <label for="manual-rod-slider">Manual Rod Position: <span id="manual-rod-value">100</span>%</label>
+                        <input type="range" id="manual-rod-slider" min="0" max="100" value="100" class="slider">
+                    </div>
+                </div>
+                 <div class="control-item">
+                    <button id="inject-neutrons">Inject Neutrons</button>
+                </div>
+                <div class="control-item">
+                    <button id="wipe-xenon">Wipe Xenon</button>
+                </div>
+                <div class="control-item">
+                    <button id="scram-button">SCRAM (AZ-5)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Disclaimer Popup -->
+    <div id="disclaimer-popup">
+        <p><strong>Disclaimer:</strong> This is a highly simplified simulation and is not representative of a real RBMK reactor's complex physics. Many parameters have been exaggerated for a stronger visual representation.</p>
+        <hr>
+        <p class="german-translation"><em><strong>Haftungsausschluss:</strong> Dies ist eine stark vereinfachte Simulation und nicht repräsentativ für die komplexe Physik eines echten RBMK-Reaktors. Viele Parameter wurden für eine stärkere visuelle Darstellung übertrieben.</em></p>
+        <button id="close-disclaimer-btn">Dismiss</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

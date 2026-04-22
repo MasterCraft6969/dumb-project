@@ -353,7 +353,7 @@ function handleNeutrons() {
         if (particle.isXenon && Math.random() < 0.3) {
             neutrons.splice(i, 1);
             particle.isXenon = false;
-            particle.isSpent = true;
+            particle.isUranium = false;
             particle.xenonDecayTimer = 9999999999999999999;
             continue;
         }
